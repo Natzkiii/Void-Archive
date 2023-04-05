@@ -16,7 +16,7 @@ class ChatData(Dataset):
 #            except:
 #                break        
         
-        
+        self.X = []
         for i in self.data:
              for j in i['dialog']:
                  self.X.append(j['text'])
