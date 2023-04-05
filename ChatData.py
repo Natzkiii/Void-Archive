@@ -17,16 +17,15 @@ class ChatData(Dataset):
 #                break        
         
         
-        
-         for i in self.data:
+        for i in self.data:
              for j in i['dialog']:
                  self.X.append(j['text'])
 
-         for idx, i in enumerate(self.X):
-             try:
-                 self.X[idx] = "<sos> " + i + self.X[idx+1] + " <eos>"
-             except:
-                 break
+        for idx, i in enumerate(self.X):
+            try:
+                self.X[idx] = "<sos> " + i + self.X[idx+1] + " <eos>"
+            except:
+                break
 
         self.X = self.X[:5000]
         
