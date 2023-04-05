@@ -1,0 +1,4 @@
+chat_data.json
+__pycache__/
+saved_models/
+.ipynb_checkpoints/
