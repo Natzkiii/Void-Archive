@@ -35,7 +35,7 @@ def infer(inp, chat_history):
     a = inp["attention_mask"].to(device)
     
     # Generate the output text
-    output = model.generate(X, attention_mask=a, max_new_tokens=200, min_new_tokens=10, pad_token_id=tokenizer.eos_token_id, early_stopping=True)
+    output = model.generate(X, attention_mask=a, max_new_tokens=200, min_new_tokens=10, do_sample=True, num_beams=4, temperature=0.7, pad_token_id=tokenizer.eos_token_id, early_stopping=True)
     output = tokenizer.decode(output[0], skip_special_tokens=True)
     
     # Split the input text and generated text, and return only the generated text
