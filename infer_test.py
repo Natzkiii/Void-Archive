@@ -73,7 +73,7 @@ if(len(sys.argv) >= 2):
     fq = {item:words.count(item) for item in words}
     sorted = sorted(fq.items(), key=lambda x: x[1], reverse=True)
     for i, (k, v) in enumerate(sorted[:5]):
-        print(f"{colored(252, 255, 105, k)} \t:\t {colored(115, 255, 0, v)}")
+        print(f"{colored(115, 255, 0, v)} \t {colored(252, 255, 105, k)}")
 
 else:
     print(colored(240, 233, 110, sys.argv[0]), colored(255, 105, 245, "<NumberOfRounds> [<Message>]"))
