@@ -9,6 +9,8 @@ import tqdm, time, os
 import math
 from Setting import SETTINGS, Seed
 import logging
+
+
 logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
 logging.getLogger("torch._inductor.utils").setLevel(logging.WARNING)
 print(Fore.LIGHTRED_EX + "There Is One Error And One Warning Currently Unresolved" + Fore.LIGHTGREEN_EX + " [Last Updated: 2023/5/30]")
@@ -67,14 +69,10 @@ def load(model, optim):
         model.load_state_dict(checkpoint['model_state_dict'])
         optim.load_state_dict(checkpoint['optimizer_state_dict'])
         model.train()
-        last_save = checkpoint['last_save']
+        return checkpoint['last_save']
     else:
         print(Fore.LIGHTRED_EX + "Error: Checkpoint Not Found Please Recheck The Checkpoint Path." + Fore.LIGHTGREEN_EX + "\nNo Worry's Now Starting Training From Scratch.")
-load(model, optim)
-params = list(model.parameters())
-params = list(model.parameters())
-num_params = sum([p.numel() for p in params])
-print(Fore.LIGHTCYAN_EX + 'Number of parameters:', num_params)    
+
 
 def calculate_perplexity(loss):
     try:
@@ -86,14 +84,22 @@ def calculate_perplexity(loss):
         return float('inf')
 
 
-def train(chatData, model, optim):
 #    print("Loading Checkpoint")
 #    if(os.path.exists(model_path)):
 #        model.load_state_dict(torch.load(model_path))
 #        model.eval()
+
+def train(chatData, model, optim):
+    last_save = load(model, optim)
+    params = list(model.parameters())
+    params = list(model.parameters())
+    num_params = sum([p.numel() for p in params])
+    print(Fore.LIGHTCYAN_EX + 'Number of parameters:', num_params)    
+
     loss_values = []
     perplexity_values = []
-    last_save = 0
+    
+
     try:
         with tqdm.tqdm(range(epochs),
           position=0, desc=Fore.LIGHTCYAN_EX + "epochs") as progBar1, tqdm.tqdm(range(len(chatData)),
