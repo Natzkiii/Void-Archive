@@ -7,8 +7,7 @@ import json
 import os
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-history = [""]
-prompt = [""]
+
 tokenizer = GPT2Tokenizer.from_pretrained(SETTINGS['raw_model'])
 tokenizer.add_special_tokens({"pad_token": "<pad>", 
                               "sep_token": "<sep>", 
@@ -36,13 +35,10 @@ custom_seed()
 
 def chatbot_response():
     while True:
-        input_text_ = input(Fore.LIGHTGREEN_EX + 'USER:')
-        chat_history = "\n".join(history)
-        chat_history = chat_history[-7000:]
-        input_text =  "".join(prompt) + chat_history + "\nUser: " + input_text_ + "\nAi: "
+        input_text = input(Fore.LIGHTGREEN_EX + 'USER:')
+        input_text = input_text
         input_ids = tokenizer.encode(input_text, return_tensors='pt').to(device)
         attention_mask = torch.ones_like(input_ids).to(device)
-        history.append(f"\nUser: {input_text_}")
         
         generate = model.generate(
             input_ids,
@@ -60,10 +56,6 @@ def chatbot_response():
         )
         
         output_txt = tokenizer.decode(generate[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
-        output_txt = output_txt.split("Ai:")[-1]
-        output_txt = output_txt.split("User:")[0]
-        output_txt = output_txt.split("User:")[0]
-        history.append(f"\nAi: {output_txt}")
         return output_txt
 
 while True:

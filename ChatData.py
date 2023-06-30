@@ -1,6 +1,10 @@
 from torch.utils.data import Dataset
 from Setting import SETTINGS
+import torch as torch
 import re
+import csv
+import pandas as pd
+
 def preprocess(s):
     s = s.replace('\n', '')
     s = s.replace('...', '.')
@@ -11,24 +15,32 @@ def preprocess(s):
     s = re.sub(' +', ' ', s)
     return s
 
-
 class ChatData(Dataset):
     def __init__(self, path:str, tokenizer):
         pairs = []
-        with open(SETTINGS['Dataset_path'], 'r') as f:
-            for line in f:
-                pair = line.strip().split('\t')
-                pairs.append([pair[0], pair[1]])
+        with open(path, 'r', encoding='utf-8') as f:
+            if path.endswith('.csv'):
+                reader = csv.reader(f)
+            elif path.endswith('.tsv'):
+                reader = csv.reader(f, delimiter='\t')
+            else:
+                raise ValueError("File type not supported. Only CSV and TSV are supported.")
+
+            for row in reader:
+                if len(row) == 2:
+                        pairs.append([row[0], row[1]])
+                else:
+                     raise ValueError("Each row in the dataset should have two columns or two tabs.")
 
         #preprocess pairs
         for pair in pairs:
-            pair[0] = preprocess(pair[0].lower())
-            pair[1] = preprocess(pair[1].lower())
+            pair[0] = preprocess(pair[0])
+            pair[1] = preprocess(pair[1])
 
-        self.input_data = ['<sos> ' + pair[0] + ' <eos> ' + '<sos> ' + pair[1] + ' <eos>' for pair in pairs]
-        self.input_data = self.input_data[:5000]
+        self.input_data = [pair[0] + pair[1] for pair in pairs]
+        self.input_data = self.input_data[:50000000]
 
-        self.X_encoded = tokenizer(self.input_data, max_length=208, truncation=True, padding="max_length", return_tensors="pt")
+        self.X_encoded = tokenizer(self.input_data, max_length=512, truncation=True, padding='longest', return_tensors="pt")
         self.input_ids = self.X_encoded['input_ids']
         self.attention_mask = self.X_encoded['attention_mask']
 
