@@ -45,7 +45,7 @@
 
 *2. for training a model create a python file in your desired name and mirror the code down below.*
 
-***Note: For A Full Explanation Click here.[Trainer_Doc](https://www.markdownguide.org)***
+***Note: For A Full Explanation Click here.[Trainer_Doc](https://github.com/VINUK0/Void-Archive/blob/Void-Trainer/Docs/Trainer_Doc.md)***
 
 ```python
 from Void_Trainer.Void_Trainer import Void_Trainer
