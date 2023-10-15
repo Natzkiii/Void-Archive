@@ -1,0 +1,10 @@
+{
+    "optimizer_name": "Adafactor",
+    "learning_rate": 8e-5,
+    "weight_decay": 0.10,
+    "decay_rate": -1.0,
+    "gradient_clip": 1.0,
+    "scale_parameter": "false",
+    "relative_step": "false",
+    "warmup_init": "false"
+}

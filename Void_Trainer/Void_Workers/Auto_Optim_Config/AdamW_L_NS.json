@@ -1,0 +1,6 @@
+{
+    "optimizer_name": "AdamW",
+    "learning_rate": 8e-5,
+    "weight_decay": 0.10,
+    "gradient_clip": 1.0
+}
