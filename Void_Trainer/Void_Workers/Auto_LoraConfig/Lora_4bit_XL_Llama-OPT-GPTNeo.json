@@ -1,9 +1,0 @@
-{
-    "bias": "None",
-    "lora_alpha": 128,
-    "lora_dropout": 0.01,
-    "lora_r": 512,
-    "target_modules": ["q_proj", "v_proj"],
-    "task_type": "CAUSAL_LM",
-    "peft_type": "Lora"
-}
