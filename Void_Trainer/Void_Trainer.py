@@ -15,6 +15,7 @@ from colorama import Fore, Style
 from tqdm import tqdm
 import lightning as Light
 import datetime
+os.environ['TOKENIZERS_PARALLELISM'] = 'False'
 
 
 def setup_fabric():
@@ -115,9 +116,9 @@ class Void_Trainer():
                  trainable_params += param.numel()
          print(f"{Fore.BLUE}████████████████████\n\n{Fore.LIGHTCYAN_EX}[Model Name]\n{Fore.LIGHTMAGENTA_EX}{self.class_module_name}\n\n{Fore.BLUE}████████████████████{Fore.RESET}\n")
          if not self.compute_type == '4bit':
-            print(f"\n{Fore.LIGHTCYAN_EX}[Total Parameters]\n{Fore.LIGHTMAGENTA_EX}{all_param / 1e6:.1f}M{Fore.BLUE}\n████████████████████\n\n{Fore.LIGHTCYAN_EX}[Trainable Parameters]\n{Fore.LIGHTMAGENTA_EX}{trainable_params / 1e6:.1f}M{Fore.Blue}\n████████████████████")
+            print(f"\n{Fore.LIGHTCYAN_EX}[Total Parameters]\n{Fore.LIGHTMAGENTA_EX}{all_param / 1e6:.1f}M{Fore.BLUE}\n████████████████████\n\n{Fore.LIGHTCYAN_EX}[Trainable Parameters]\n{Fore.LIGHTMAGENTA_EX}{trainable_params / 1e6:.1f}M{Fore.BLUE}\n████████████████████")
          if self.compute_type == '4bit':
-            print(f"\n{Fore.LIGHTCYAN_EX}[Total Parameters]\n{Fore.LIGHTMAGENTA_EX}{all_param*2 / 1e6:.1f}M{Fore.BLUE}\n████████████████████\n\n{Fore.LIGHTCYAN_EX}[Trainable Parameters]\n{Fore.LIGHTMAGENTA_EX}{trainable_params*2 / 1e6:.1f}M{Fore.Blue}\n████████████████████")
+            print(f"\n{Fore.LIGHTCYAN_EX}[Total Parameters]\n{Fore.LIGHTMAGENTA_EX}{all_param*2 / 1e6:.1f}M{Fore.BLUE}\n████████████████████\n\n{Fore.LIGHTCYAN_EX}[Trainable Parameters]\n{Fore.LIGHTMAGENTA_EX}{trainable_params*2 / 1e6:.1f}M{Fore.BLUE}\n████████████████████")
         
         
     def get_current_time(self):
