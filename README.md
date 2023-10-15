@@ -41,14 +41,14 @@
 
 ### ⌘ How To Run ⌘
 
-*1. Install it by cloning the github or hopefully pip in the future (i am busy a litte).*
+*1. Install it by cloning the github and go to to the `Void-Archive/Void_Trainer` or hopefully pip in the future  (i am busy a litte) .*
 
-*2. for training a model create a python file in your desired name and mirror the code down below.*
+*2. for training a model create a python file in your desired name inside `Void-Archive/Void_Trainer` and mirror the code down below.*
 
 ***Note: For A Full Explanation Click here.[Trainer_Doc](https://github.com/VINUK0/Void-Archive/blob/Void-Trainer/Docs/Trainer_Doc.md)***
 
 ```python
-from Void_Trainer.Void_Trainer import Void_Trainer
+from Void_Trainer import Void_Trainer
 
 
 Trainer = Void_Trainer(compute_type='float32',
@@ -83,7 +83,7 @@ Trainer.train()
 
 ```python
 
-from Void_Trainer.Void_Inference import Void_Inference
+from Void_Inference import Void_Inference
 
 Inference = Void_Inference(inference_type='Chat',
                            inference_model_path='/notebooks/examples/saved_models/pytorch_model.bin',
