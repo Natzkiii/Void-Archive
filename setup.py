@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='Void-Archive',
+    name='Void_Archive',
     version='0.0.1',
     description='Void Archive is a library that oversimplified training a model and inferencing a model.',
     author='VINUK01, psw01',
