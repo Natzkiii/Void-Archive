@@ -26,6 +26,8 @@
 
 - [✅] ***Pre Defined Config's For Optimizer's For Better Training With Ability To Use Your Own Custom Config.***
 
+- [✅] ***Currently Supported Optimizers Are*** ***`AdamW, Adafactor, AdamW8bit`.***
+
 - [✅] ***Built In Custom Dataset Handler That Support's*** ***`CSV, TSV, DB`.***
 
 - [✅] ***Model Performance Logging At Each Epoch.***
