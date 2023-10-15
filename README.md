@@ -41,9 +41,7 @@
 
 ### ⌘ How To Run ⌘
 
-*1. Install it using github or hopefully pip in the future (i am busy a litte).*
-
-***`pip install git+https://github.com/VINUK0/Void-Archive`***
+*1. Install it by cloning the github or hopefully pip in the future (i am busy a litte).*
 
 *2. for training a model create a python file in your desired name and mirror the code down below.*
 
