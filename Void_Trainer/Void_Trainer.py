@@ -61,7 +61,7 @@ class Void_Trainer():
                     self.model.gradient_checkpointing_enable()
         if not compute_type == '8bit':
             if not compute_type == '4bit':
-                if gradient_checkpointing:
+                if not gradient_checkpointing:
                     self.model.gradient_checkpointing_disable()
         
         
